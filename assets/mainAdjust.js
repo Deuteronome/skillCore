@@ -8,4 +8,4 @@ function mainAdjust() {
 
 mainAdjust();
 
-window.onresize = mainAdjust;
+window.addEventListener('resize', mainAdjust);
