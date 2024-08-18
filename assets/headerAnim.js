@@ -36,4 +36,4 @@ function moveBoxes() {
 zoneAdjust();
 moveBoxes();
 
-window.onresize = zoneAdjust;
+window.addEventListener('resize', zoneAdjust);
