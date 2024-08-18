@@ -1,3 +1,124 @@
+/*réglages généraux */
+
+@font-face {
+    font-family: 'custom';
+    src: url('./caviar.ttf');
+}
+
+@font-face {
+    font-family: 'customBold';
+    src: url('./caviarBold.ttf');
+}
+
+@font-face {
+    font-family: 'customScript';
+    src: url('./script.otf');
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'custom', sans-serif;
+    font-size : 2vh;
+    /*Palette : */
+
+    --pal-prim-light :#e2c6bf;
+    --pal-prim-mid :#9e5c55;
+    --pal-prim-dark :#643737;
+    
+    --pal-sec-light :#dbd9de;
+    --pal-sec-mid :#96929e;
+    --pal-sec-dark :#45424a;
+}
+
 body {
-    background-color: skyblue;
+    background-color: var(--pal-sec-light);
+    color : var(--pal-prim-dark);
+}
+
+/* header */
+
+header {
+    position: fixed;
+    z-index: 10;
+}
+
+#header-top {
+    background-color: var(--pal-sec-dark);
+    color: var(--pal-prim-light);
+    overflow: hidden;
+}
+
+.border-bottom-custom {
+    border-bottom: var(--pal-prim-light) 2px solid;
+}
+
+    /*Animation background header*/
+
+.back-anim {
+    position : fixed;
+    top : 0;
+    right: 5%;
+    width: 40%;
+    background-size: 100% auto;
+    background-repeat: revert;    
+    padding: 0;
+    overflow: hidden;
+}
+
+#back-anim-dark1 {
+    background-image: url('../images/background/headerDark1.png');
+    z-index: 11;
+}
+
+#back-anim-dark2 {
+    background-image: url('../images/background/headerDark2.png');
+    z-index: 14;
+}
+
+#back-anim-mid {
+    background-image: url('../images/background/headerMid.png');
+    z-index: 12;
+}
+
+#back-anim-light {
+    background-image: url('../images/background/headerLight.png');
+    z-index: 13;
+}
+
+
+/* navbar */
+
+.navbar-custom {
+    background-color: var(--pal-sec-dark);
+    
+}
+
+.text-custom .text-custom-simple {
+    color: var(--pal-prim-light);
+}
+
+.text-custom:hover {
+    color: var(--pal-prim-mid);
+}
+
+.menu-custom {
+    background-color: var(--pal-sec-dark);
+}
+
+.dropdown-custom:hover {
+    background-color: var(--pal-sec-mid);
+    font-weight: 700;
+}
+
+.navbar-nav .nav-link.show {
+    color: var(--pal-prim-mid);
+    font-weight: 900;
+}
+
+/* Partie principale de l'affichage */
+
+main {
+    position: relative;
 }

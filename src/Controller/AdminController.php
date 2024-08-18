@@ -12,8 +12,10 @@ class AdminController extends AbstractController
     #[Route('/accueil', name: 'home')]
     public function index(): Response
     {
-        return $this->render('admin/index.html.twig', [
-            'controller_name' => 'AdminController',
+        $pageTitle = "Tableau de bord";
+        
+        return $this->render('admin/home.html.twig', [
+            'pageTitle' => $pageTitle
         ]);
     }
 }

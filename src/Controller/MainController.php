@@ -28,4 +28,14 @@ class MainController extends AbstractController
             }
         }       
     }
+
+    #[Route('/compte', name: 'app_account')]
+    public function account():Response
+    {
+        $pageTitle = 'Info compte';
+
+        return $this->render('main/account.html.twig', [
+            'pageTitle' => $pageTitle
+        ]);
+    }
 }

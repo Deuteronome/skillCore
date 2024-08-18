@@ -1,0 +1,78 @@
+<nav class="navbar navbar-expand-lg navbar-custom" data-bs-theme="dark"><!---->
+  <div class="container-fluid">
+    <h2 class="navbar-brand text-custom-simple fw-bold m-0">{{pageTitle}}</h2>
+    {% if app.user %}
+      
+    
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ms-auto mb-2 mb-lg-0 pe-5">
+        <li class="nav-item">
+          <a class="nav-link text-custom" aria-current="page" href="{{path('app_main')}}">Accueil</a>
+        </li>
+        {% if app.user.roles[0] == 'ROLE_ADMIN' %}
+
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle text-custom" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            Coordination
+          </a>
+          <ul class="dropdown-menu menu-custom">
+            <li><a class="dropdown-item text-custom dropdown-custom" href="#">Action</a></li>
+            <li><a class="dropdown-item text-custom dropdown-custom" href="#">Another action</a></li>
+            <li><hr class="dropdown-divider"></li>
+            <li><a class="dropdown-item text-custom dropdown-custom" href="#">Something else here</a></li>
+          </ul>
+        </li>
+
+          {% if app.user.referred is not empty %}
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle text-custom" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                Référence
+              </a>
+              <ul class="dropdown-menu menu-custom">
+                <li><a class="dropdown-item text-custom dropdown-custom" href="#">Action</a></li>
+                <li><a class="dropdown-item text-custom dropdown-custom" href="#">Another action</a></li>
+                <li><hr class="dropdown-divider"></li>
+                <li><a class="dropdown-item text-custom dropdown-custom" href="#">Something else here</a></li>
+              </ul>
+            </li>
+          {% endif %}
+          
+        {% elseif app.user.roles[0] == 'ROLE_COORD' %}
+
+          {% if app.user.referred is not empty %}
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle text-custom" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                Référence
+              </a>
+              <ul class="dropdown-menu menu-custom">
+                <li><a class="dropdown-item text-custom dropdown-custom" href="#">Action</a></li>
+                <li><a class="dropdown-item text-custom dropdown-custom" href="#">Another action</a></li>
+                <li><hr class="dropdown-divider"></li>
+                <li><a class="dropdown-item text-custom dropdown-custom" href="#">Something else here</a></li>
+              </ul>
+            </li>
+          {% endif %}
+
+        {% elseif app.user.roles[0] == 'ROLE_REF' %}
+
+        {% elseif app.user.roles[0] == 'ROLE_STUDENT' %}
+          
+        
+        
+        
+        {% endif %}
+        <li class="nav-item">
+          <a class="nav-link text-custom" href="{{path('app_account')}}">Compte</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link text-custom" href="{{path('app_logout')}}">Déconnexion</a>
+        </li>
+      </ul>
+      
+    </div>
+    {% endif %}
+  </div>
+</nav>
