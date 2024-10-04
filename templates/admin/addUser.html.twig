@@ -1,0 +1,11 @@
+{% extends 'base.html.twig' %}
+
+{% block main %}
+   <div class="row p-4">
+      <div class="col-12 col-lg-6 box-custom p-3">
+         {{ form_errors(form) }}
+         {{ form_start(form) }}
+         {{ form_end(form) }}
+      </div>
+   </div>
+{% endblock %}

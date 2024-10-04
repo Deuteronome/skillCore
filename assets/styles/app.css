@@ -37,10 +37,41 @@ body {
     color : var(--pal-prim-dark);
 }
 
+.text-custom, .text-custom-simple {
+    color: var(--pal-prim-light);
+}
+
+.text-custom:hover {
+    color: var(--pal-prim-mid);
+}
+
+.text-custom-simple:hover {
+    color: var(--pal-prim-light);
+}
+
+.box-custom {
+    background-color: var(--pal-prim-light);
+    box-shadow: var(--pal-sec-mid) 2px 2px 5px 0;
+    color : var(--pal-sec-dark);
+}
+
+.btn-sec-custom {
+    background-color: var(--pal-sec-dark);
+    color : var(--pal-sec-light);
+}
+
+.btn-sec-custom:hover {
+    background-color: var(--pal-prim-light);
+    box-shadow: var(--pal-sec-dark) 1px 1px 3px 0;
+    color : var(--pal-sec-dark);
+}
+
+
 /* header */
 
 header {
     position: fixed;
+    top : 0;
     z-index: 10;
 }
 
@@ -93,14 +124,6 @@ header {
 .navbar-custom {
     background-color: var(--pal-sec-dark);
     
-}
-
-.text-custom .text-custom-simple {
-    color: var(--pal-prim-light);
-}
-
-.text-custom:hover {
-    color: var(--pal-prim-mid);
 }
 
 .menu-custom {

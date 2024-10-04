@@ -1,5 +1,49 @@
 {% extends 'base.html.twig' %}
 
 
+{% block main %}
+    <div class="row p-4">
+        {% for structure in structureList %}
+            <div class="col-12 col-lg-4 p-3 box-custom">
+                    <div class="row justify-content-between align-items-center">
+                        <div class="col-3">
+                            <img src="{{ asset('images/logo/'~ structure.logo)}}" alt="logo" class="img-fluid">
+                        </div>
+                        <div class="col-8">
+                            <h3 class="h4 fw-bold">{{structure.name}}</h3>
+                        </div>
+                    </div>
 
+                    <div class="row p-3 mt-3">
+                        <h4 class="col-12 h5 border-bottom border-dark fw-bold mb-3">Ajouter</h4>
+                        <div class="col-lg-4 col-12 px-1 pb-1 pb-lg-0"><a href="#" class="btn btn-sec-custom w-100">Référentiel</a></div>
+                        <div class="col-lg-4 col-12 px-1 pb-1 pb-lg-0"><a href="#" class="btn btn-sec-custom w-100">Site</a></div>
+                        <div class="col-lg-4 col-12 px-1 pb-1 pb-lg-0"><a href="{{path('app_admin_add_user', {'id' : structure.id})}}" class="btn btn-sec-custom w-100">Utilisateur</a></div> 
+                    </div>
+
+                    <div class="row pb-3 px-3">
+                        <h4 class="col-12 h5 border-bottom border-dark fw-bold mb-3">Référentiels</h4>
+                        {% for framework in structure.getSkillFrameworks %}
+                        <h5 class="col-12">{{framework.name}}</h5>
+                        <p class="col-12 mb-2">{{framework.description}}</p>                            
+                        {% endfor %}
+                        <h4 class="col-12 h5 border-bottom border-dark fw-bold mb-3">Sites</h4>
+                        <p class="col-12 mb-2">Coordinateurs : {{structureCount[structure.name].coordCount}}</p>
+                        {% for site in structure.getSites %}
+                            <div class="row">
+                                <p class="col-12 fw-bolder m-0">{{site.name}}</p>
+                                <p class="col-6 mb-2">Référents : {{structureCount[structure.name][site.name].ref}}</p>
+                                <p class="col-6 mb-2">Stagiaires : {{structureCount[structure.name][site.name].stag}}</p>
+                            </div>
+                            
+                        {% endfor %}
+
+                    </div>
+
+                    
+                
+            </div>
+        {% endfor %}
+    </div>
+{% endblock %}
 
