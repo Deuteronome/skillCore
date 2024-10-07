@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Activation de votre compte sur la plateforme APC</title>
+    <style>
+        body{
+            background-color: #e2c6bf;
+            color: #dbd9de;
+            font-family: sans-serif;
+            font-size: large;
+            padding: 40px;
+        }
+
+        .box-custom {
+            background-color: #9e5c55;
+            box-shadow: black 2px 2px 5px 0;
+            padding : 20px;
+        }
+    
+    </style>
+</head>
+<body>
+    <div class="box-custom">
+        <p>Bonjour {{ user.firstname}} {{ user.lastname}},</p>
+        <p>Pour activer votre compte sur la <strong>plateforme APC</strong> - application de gestion des compétences de l'E2C - veuillez définir votre mot de passe en cliquant sur le lien suivant.</p>
+        <p>Ce lien sera valable 7 jours après la réception de ce message.</p>
+        <p><a href="{{ absolute_url(path('app_password', {token: token}))}}">Lien de modification de mot de passe</a></p>
+        <p>A bientôt sur la plateforme <strong>plateforme PAC</strong></p>
+    </div>
+</body>
+</html>

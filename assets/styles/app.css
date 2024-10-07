@@ -32,6 +32,20 @@
     --pal-sec-dark :#45424a;
 }
 
+/*flash messages */
+
+.alert-custom {
+    position: fixed;
+    bottom : 5vh;
+    left : 5vw;
+    width : 90vw;
+    transition : width 2000ms;
+    overflow: hidden;
+    text-overflow: "";
+    text-wrap: nowrap;
+    z-index: 5;
+}
+
 body {
     background-color: var(--pal-sec-light);
     color : var(--pal-prim-dark);

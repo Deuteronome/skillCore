@@ -16,6 +16,10 @@
             {% include './_partial/_header.html.twig' %}
         {% endblock %}
 
+        {% block flash %}
+            {% include './_partial/_flash.html.twig' %}
+        {% endblock %}
+
         <main class="container-fluid">
         {% block main %}
             
