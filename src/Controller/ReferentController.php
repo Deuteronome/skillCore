@@ -12,8 +12,10 @@ class ReferentController extends AbstractController
     #[Route('/accueil', name: 'home')]
     public function index(): Response
     {
-        return $this->render('referent/index.html.twig', [
-            'controller_name' => 'ReferentController',
+        $pageTitle = "Tableau de bord";
+
+        return $this->render('standBy.html.twig', [
+            'pageTitle' => $pageTitle
         ]);
     }
 }

@@ -12,8 +12,10 @@ class StudentController extends AbstractController
     #[Route('/accueil', name:'home')]
     public function index(): Response
     {
-        return $this->render('student/index.html.twig', [
-            'controller_name' => 'StudentController',
+        $pageTitle = "Tableau de bord";
+
+        return $this->render('standBy.html.twig', [
+            'pageTitle' => $pageTitle
         ]);
     }
 }

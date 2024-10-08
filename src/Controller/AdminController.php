@@ -5,6 +5,7 @@ namespace App\Controller;
 use App\Entity\Structure;
 use App\Entity\User;
 use App\Form\AdminAddUserType;
+use App\Repository\SkillFrameworkRepository;
 use App\Repository\StructureRepository;
 use App\Service\JWTService;
 use Doctrine\ORM\EntityManagerInterface;
@@ -132,6 +133,29 @@ class AdminController extends AbstractController
         return $this->render('admin/addUser.html.twig', [
             'pageTitle' => $pageTitle,
             'form' => $form
+        ]);
+    }
+
+    #[Route('/structure', name:'structure')]
+    public function manageStructure():Response
+    {
+        $pageTitle = "Gestions des structures";
+
+        return $this->render('standBy.html.twig', [
+            'pageTitle' => $pageTitle
+        ]);
+    }
+
+    #[Route('/referentiel', name:'framework')]
+    public function manageFramework(SkillFrameworkRepository $skillFrameworkRepository):Response
+    {
+        $pageTitle = "Gestion des référentiels";
+
+        $frameworkList = $skillFrameworkRepository->findAll();
+
+        return $this->render('admin/manageFramework.html.twig', [
+            'pageTitle' => $pageTitle,
+            'frameworks' => $frameworkList
         ]);
     }
 }

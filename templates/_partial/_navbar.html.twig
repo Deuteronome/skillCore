@@ -15,11 +15,11 @@
         {% if app.user.roles[0] == 'ROLE_ADMIN' %}
 
         <li class="nav-item">
-          <a class="nav-link text-custom" aria-current="page" href="#">Structures</a>
+          <a class="nav-link text-custom" aria-current="page" href="{{ path('app_admin_structure')}}">Structures</a>
         </li>
 
         <li class="nav-item">
-          <a class="nav-link text-custom" aria-current="page" href="#">Référentiels</a>
+          <a class="nav-link text-custom" aria-current="page" href="{{ path('app_admin_framework')}}">Référentiels</a>
         </li>
 
         <li class="nav-item dropdown">

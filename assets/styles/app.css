@@ -18,11 +18,11 @@
 * {
     margin: 0;
     padding: 0;
-    box-sizing: border-box;
+    box-sizing:border-box;
     font-family: 'custom', sans-serif;
     font-size : 2vh;
-    /*Palette : */
 
+    /*Palette : */
     --pal-prim-light :#e2c6bf;
     --pal-prim-mid :#9e5c55;
     --pal-prim-dark :#643737;
@@ -32,7 +32,20 @@
     --pal-sec-dark :#45424a;
 }
 
+/*Mise en forme générale des pages */
+
+body {
+    background-color: var(--pal-sec-light);
+    color : var(--pal-prim-dark);
+}
+
+main {
+    position: relative;
+    /*positionnement géré par le script mainAdjust.js*/
+}
+
 /*flash messages */
+
 
 .alert-custom {
     position: fixed;
@@ -46,10 +59,7 @@
     z-index: 5;
 }
 
-body {
-    background-color: var(--pal-sec-light);
-    color : var(--pal-prim-dark);
-}
+/*formatage du texte*/
 
 .text-custom, .text-custom-simple {
     color: var(--pal-prim-light);
@@ -62,6 +72,12 @@ body {
 .text-custom-simple:hover {
     color: var(--pal-prim-light);
 }
+
+.text-bold {
+    font-family: 'customBold';
+}
+
+/* Mise en forme des élèments récurents*/
 
 .box-custom {
     background-color: var(--pal-prim-light);
@@ -99,7 +115,7 @@ header {
     border-bottom: var(--pal-prim-light) 2px solid;
 }
 
-    /*Animation background header*/
+    /*Animation background header - gérée par le script headerAnim.js*/
 
 .back-anim {
     position : fixed;
@@ -154,8 +170,4 @@ header {
     font-weight: 900;
 }
 
-/* Partie principale de l'affichage */
 
-main {
-    position: relative;
-}
