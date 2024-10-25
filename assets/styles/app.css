@@ -30,6 +30,8 @@
     --pal-sec-light :#dbd9de;
     --pal-sec-mid :#96929e;
     --pal-sec-dark :#45424a;
+
+    --pal-gen-trans: #ffffff8b;
 }
 
 /*Mise en forme générale des pages */
@@ -80,20 +82,32 @@ main {
 /* Mise en forme des élèments récurents*/
 
 .box-custom {
-    background-color: var(--pal-prim-light);
+    background-color: var(--pal-gen-trans);
     box-shadow: var(--pal-sec-mid) 2px 2px 5px 0;
+    color : var(--pal-prim-dark);
+}
+
+.btn-prim-custom {
+    background-color: var(--pal-prim-light);
     color : var(--pal-sec-dark);
+    overflow: hidden;
+}
+
+.btn-prim-custom:hover {
+    background-color: var(--pal-prim-mid);
+    color : var(--pal-sec-light);
 }
 
 .btn-sec-custom {
     background-color: var(--pal-sec-dark);
     color : var(--pal-sec-light);
+    overflow: hidden;
 }
 
 .btn-sec-custom:hover {
-    background-color: var(--pal-prim-light);
+    background-color: var(--pal-sec-mid);
     box-shadow: var(--pal-sec-dark) 1px 1px 3px 0;
-    color : var(--pal-sec-dark);
+    color : var(--pal-prim-dark);
 }
 
 
@@ -170,4 +184,30 @@ header {
     font-weight: 900;
 }
 
+/*Page spécifique : mise en forme des référentiels */
+
+.skill-capsule {
+    border: var(--pal-sec-mid) 2px solid;
+    border-radius: 20px;
+    
+}
+
+.skill-body {
+    display : none;
+    
+}
+
+.icon-box {
+    height: 2rem;
+    aspect-ratio: 1;
+    cursor: pointer;
+}
+
+/*Page spécifique : gestion des utilisateurs */
+
+.img-icon {
+    display: block;
+    /*width : 70%;
+    aspect-ratio: 1;*/
+}
 

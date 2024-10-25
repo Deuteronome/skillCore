@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Form\ForgottenPasswordType;
 use App\Repository\UserRepository;
+use App\Service\ActivateUserService;
 use App\Service\JWTService;
 use Symfony\Bridge\Twig\Mime\TemplatedEmail;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -52,7 +53,7 @@ class MainController extends AbstractController
     }
 
     #[Route(path:'/oubli', name:'app_forgotten_password')]
-    public function forgottenPassword(Request $request, UserRepository $userRepository, JWTService $jwt, MailerInterface $mailer):Response
+    public function forgottenPassword(Request $request, UserRepository $userRepository, ActivateUserService $activateUser):Response
     {
         if($this->getUser()) {
             $this->redirectToRoute('app_main');
@@ -76,31 +77,11 @@ class MainController extends AbstractController
                 return $this->redirectToRoute('app_main');
             }
 
-            $header = [
-                'typ' => 'JWT',
-                'alg' => 'HS256'
-            ];
+            $linkSuccess = $activateUser->activate($user);
 
-            $payload = [
-                'user_id' => $user->getId()
-            ];
-
-            $token = $jwt->generate($header, $payload, $this->getParameter('app.jwtsecret'));
-
-            $email = (new TemplatedEmail())
-                ->from(new Address('admin@apc.e2c-app-factory.fr', 'Plateforme APC'))
-                ->to(new Address($user->getEmail(), $user->getFirstname()." ".$user->getLastname()))
-                ->subject('plateforme APC - réinitialisation de mot de passe')
-                ->htmlTemplate('email/activate.html.twig')
-                ->context([
-                    'user' => $user,
-                    'token' => $token
-                ]);
-
-            try {
-                $mailer->send($email);
+            if($activateUser) {
                 $this->addFlash('success', 'Mail de réinitialisation envoyé');
-            } catch(TransportExceptionInterface $e) {
+            } else {
                 $this->addFlash('danger', 'Le mail d\'initialisation du mot de passe n\'a pas pu être envoyé');
             }
 

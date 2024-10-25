@@ -1,20 +1,26 @@
 {% extends 'base.html.twig' %}
 
+{% block javascripts %}
+    <script src="{{ asset('/skillFrame.js')}}" defer></script>
+    {{ parent() }}
+{% endblock %}
+
 {% block main %}
     <div class="row p-3 p-lg-5 justify-content-center">
         <div class="col-12 col-lg-10 p-3 box-custom">
             {% for framework in frameworks %}
             <h1 class="h2 border-bottom border-dark mb-3">{{framework.name}}</h1>
             {% for domain in framework.domains %}
-                <h2 class="h3 mb-2">{{domain.code}} - {{domain.name}}</h2>
+                <h2 class="h4 mb-2 mt-4">{{domain.code}} - {{domain.name}}</h2>
                 {% for skill in domain.skills %}
-                    <div class="skill-capsule mx-3 my-1 w-100">
-                        <div class="skill-head d-flex flex-row justify-content-between">
-                            <h3 class="h4 text-bold">{{skill.code}} {{skill.name}}</h3>
+                    <div class="skill-capsule mx-3 my-2 w-90 p-2">
+                        <div class="skill-head d-flex flex-row justify-content-between align-items-center py-1 pe-2">
+                            <h3 class="h5 m-0 text-bold">{{skill.code}} {{skill.name}}</h3>
+                            <div class="icon-box"><img src="{{ asset('images/icon/plusIcon.png')}}" class="img-fluid"></div>
                         </div>
-                        <div class="skill-boby ps-3">                       
+                        <div class="skill-body border-top border-dark px-3 py-1">                      
                             {% for descriptor in skill.descriptors %}
-                                <p>{{descriptor.description}}</p>
+                                <p class="mb-1">{{descriptor.description}}</p>
                             {% endfor %}
                         </div>
                     </div>

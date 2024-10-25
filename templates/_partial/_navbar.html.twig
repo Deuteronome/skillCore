@@ -9,10 +9,11 @@
     </button>
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav ms-auto mb-2 mb-lg-0 pe-5">
-        <li class="nav-item">
-          <a class="nav-link text-custom" aria-current="page" href="{{path('app_main')}}">Accueil</a>
-        </li>
+        
         {% if app.user.roles[0] == 'ROLE_ADMIN' %}
+        <li class="nav-item">
+          <a class="nav-link text-custom" aria-current="page" href="{{path('app_admin_home')}}">Tableau de bord</a>
+        </li>
 
         <li class="nav-item">
           <a class="nav-link text-custom" aria-current="page" href="{{ path('app_admin_structure')}}">Structures</a>
@@ -27,7 +28,7 @@
             Coordination
           </a>
           <ul class="dropdown-menu menu-custom">
-            <li><a class="dropdown-item text-custom dropdown-custom" href="#">Action</a></li>
+            <li><a class="dropdown-item text-custom dropdown-custom" href="{{ path('app_coordinator_home')}}">Gestion des utilisateurs</a></li>
             <li><a class="dropdown-item text-custom dropdown-custom" href="#">Another action</a></li>
             <li><hr class="dropdown-divider"></li>
             <li><a class="dropdown-item text-custom dropdown-custom" href="#">Something else here</a></li>
@@ -50,6 +51,9 @@
           
         {% elseif app.user.roles[0] == 'ROLE_COORD' %}
 
+          <li class="nav-item">
+            <a class="nav-link text-custom" aria-current="page" href="{{ path('app_coordinator_home')}}">Gestion des utilisateurs</a>
+          </li>
           {% if app.user.referred is not empty %}
             <li class="nav-item dropdown">
               <a class="nav-link dropdown-toggle text-custom" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">

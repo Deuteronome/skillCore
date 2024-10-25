@@ -1,20 +1,62 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello CoordinatorController!{% endblock %}
+{% block javascripts %}
+    <data value="{{asset('/images/icon/plusIcon.png')}}" id="plusIcon"></data>
+    <data value="{{asset('/images/icon/minusIcon.png')}}" id="minusIcon"></data>
+    <script src="{{asset('/userList.js')}}" defer></script>
+    {{ parent() }}
+{% endblock %}
 
-{% block body %}
-<style>
-    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
-    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
-</style>
 
-<div class="example-wrapper">
-    <h1>Hello {{ controller_name }}! ✅</h1>
+{% block main %}
+    <div class="row p-3 p-lg-5">
 
-    This friendly message is coming from:
-    <ul>
-        <li>Your controller at <code>/home/misterbear/Bureau/codage/symfony/skillCore/src/Controller/CoordinatorController.php</code></li>
-        <li>Your template at <code>/home/misterbear/Bureau/codage/symfony/skillCore/templates/coordinator/index.html.twig</code></li>
-    </ul>
-</div>
+        <div class="row box-custom p-3 mb-3">
+            <h2 class="h4 col-12 border-bottom border-dark">Coordinateurs</h2>
+            {% for site in structure.sites %}
+                {% for user in site.users %}
+                    {% if user.roles[0] in ["ROLE_COORD", "ROLE_ADMIN"] %}
+                        <div class="col-3">{{user.firstname}} {{user.lastname}}</div>
+                    {% endif %}
+                {% endfor %}
+                
+            {% endfor %}
+        </div>
+
+        <div class="row box-custom p-3 mb-3">
+            {% for site in structure.sites %}
+                <h2 class="h4 col-11 mb-0 mt-2">Référents - {{site.name}}</h2>
+                <div class="col-1 d-flex flex-row icon-box mt-2 justify-content-end"><img src="{{ asset('images/icon/plusIcon.png')}}" class="img-icon"></div>
+                <div class="site-users d-none row border-top border-bottom border-dark px-0 mx-1 py-2">
+                    {% for user in site.users %}
+                        {% if user.roles[0] in ["ROLE_COORD", "ROLE_ADMIN", "ROLE_REF"] %}
+                            <div class="row align-items-center py-1">
+                                <div class="col-3">
+                                    <div class="row justify-content-between align-items-center">
+                                        <div class="col-1 p-0"><img src="{{ asset('images/icon/plusIcon.png')}}" class="img-fluid ref-icon"></div>
+                                        <div class="col-11">{{user.firstname}} {{user.lastname}}</div>
+                                    </div>                                         
+                                </div>
+                                <div class="col-3">Référés : {{user.referred | length}}</div>
+                            </div>
+                            <div class="row d-none referred-box mb-1 ms-4">
+                                {% for referred in user.referred %}
+                                    <div class="row justify-content-between">
+                                        <div class="col-6 ref-info">{{referred.firstname}} {{referred.lastname}}</div>
+                                        <div class="col-6 ref-action"></div>
+                                    </div>                                    
+                                {% endfor %}
+                                <div class="row justify-content-start pe-5">
+                                    <a href="{{ path('app_referent_add_student', {id: user.id})}}" class="col-2 btn btn-sm btn-prim-custom">Ajouter stagiaire</a>
+                                </div>
+                            </div>
+                        {% endif %}
+                    {% endfor %}
+                    <div class="row justify-content-end pe-5">
+                        <a href="{{ path('app_coordinator_add_ref', {id: site.id})}}" class="col-2 btn btn-sm btn-sec-custom">Nouveau référent</a>
+                    </div>
+                </div>        
+            {% endfor %}
+        </div>
+    </div>
 {% endblock %}
