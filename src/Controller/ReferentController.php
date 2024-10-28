@@ -43,7 +43,7 @@ class ReferentController extends AbstractController
             $student->setPassword(
                 $hasher->hashPassword($student, $this->getParameter('app.passwddef'))
             );
-
+            $student->setRoles(["ROLE_STUDENT"]);
             $student->setActive(true);
             //$user->setRoles(["ROLE_USER"]); 
 
