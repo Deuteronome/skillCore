@@ -2,7 +2,11 @@
 
 namespace App\Service;
 
+use App\Entity\Tracker;
 use App\Entity\User;
+use App\Repository\SkillFrameworkRepository;
+use Doctrine\ORM\EntityManagerInterface;
+use Exception;
 use Symfony\Bridge\Twig\Mime\TemplatedEmail;
 use Symfony\Component\DependencyInjection\ParameterBag\ParameterBagInterface;
 use Symfony\Component\Mailer\Exception\TransportExceptionInterface;
@@ -14,12 +18,14 @@ class ActivateUserService {
     private $params;
     private $jwt;
     private $mailer;
+    private $em;   
 
-    public function __construct(ParameterBagInterface $params, JWTService $jwt, MailerInterface $mailer)
+    public function __construct(ParameterBagInterface $params, JWTService $jwt, MailerInterface $mailer, EntityManagerInterface $em)
     {
         $this->params = $params;
         $this->jwt = $jwt;
-        $this->mailer = $mailer;
+        $this->mailer = $mailer; 
+        $this->em = $em;
     }
 
     public function getToken(User $user):string {
@@ -57,6 +63,42 @@ class ActivateUserService {
             $success = false;
         }
         
+        return $success;
+    }
+
+    public function studentTracker(User $user):bool
+    {
+        $success = true;
+        $skillList = [];
+
+        foreach($user->getSite()->getStructure()->getSkillFrameworks() as $framework) {
+            $baseLevel = null;
+
+            foreach($framework->getLevels() as $level) {
+                if ($level->getHierarchy()===0) {
+                    $baseLevel=$level;
+                }
+            }
+
+            foreach($framework->getDomains() as $domain) {
+                foreach($domain->getSkills() as $skill) {
+                    $tracker = new Tracker();
+                    $tracker->setUser($user);
+                    $tracker->setSkill($skill);
+                    $tracker->setLevel($baseLevel);
+
+                    $this->em->persist($tracker);
+                    $skillList[]=$tracker;
+                }
+            }
+        }
+
+        try {
+            $this->em->flush();
+        } catch(Exception $e) {
+            $success = false;
+        }
+
         return $success;
     }
 

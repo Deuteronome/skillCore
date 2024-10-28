@@ -36,7 +36,7 @@ security:
     access_control:
         - { path: ^/admin, roles: ROLE_ADMIN }
         - { path: ^/coordination, roles: ROLE_COORD }
-        - { path: ^/formateur, roles: ROLE_REF }
+        - { path: ^/referent, roles: ROLE_REF }
         - { path: ^/stagiaire, roles: ROLE_STUDENT }
         - { path: ^/compte, roles: ROLE_USER }
     role_hierarchy:
