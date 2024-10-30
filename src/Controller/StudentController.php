@@ -23,6 +23,7 @@ class StudentController extends AbstractController
     public function skillMap():Response
     {
         $pageTitle = "Carte de compétences - ".$this->getUser()->getFirstname()." ".$this->getUser()->getLastname();
+        
         return $this->render('student/skillMap.html.twig', [
             'pageTitle' => $pageTitle
         ]);
